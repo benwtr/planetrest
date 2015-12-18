@@ -1,0 +1,12 @@
+description  "demo rest server"
+author       "ben p"
+
+stop on shutdown
+
+respawn
+respawn limit 99 5
+
+script
+  cd /vagrant
+  exec /usr/bin/python /vagrant/planetrestless.py >> /var/log/planetrestless.py 2>&1
+end script
