@@ -94,6 +94,7 @@ assert 'newfirst' in r.text
 r = update_user('test', 'guy', 'testguy', groups=['testgroup1'])
 r = get_user()
 assert 'testgroup1' in r.text
+delete_group('testgroup1')
 
 # test PUT on nonexistant user - should return 404
 r = update_user('', '', 'nonexistant')
