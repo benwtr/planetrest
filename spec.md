@@ -1,7 +1,4 @@
-Take Home Code Test
-===================
-
-Implement a REST service using a python web framework such as flask or django that can be used to store, fetch, and update user records. A user record can be represented in a JSON hash like so:
+A user record can be represented in a JSON hash like so:
 
 ```json
 {
@@ -62,12 +59,4 @@ DELETE /groups/<group name>
     Deletes a group.
 ```
 
-Implementation Notes:
 
-1. Any design decisions not specified herein are fair game. Completed projects will be evaluated on how closely they follow the spec, their design, and cleanliness of implementation.
-
-2. Completed projects must include a README with enough instructions for evaluators to build and run the code. Bonus points for builds which require minimal manual steps.
-
-3. Remember this project should take a maximum of 8 hours to complete. Do not get hung up on scaling or persistence issues. This is a project used to evaluate your design and implementation skills only.
-
-4. Please include any unit or integration tests used to verify correctness.

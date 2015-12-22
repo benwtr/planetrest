@@ -14,7 +14,7 @@ db = flask.ext.sqlalchemy.SQLAlchemy(app)
 
 Groups = db.Table('groups',
                   db.Column('userid', db.Unicode, db.ForeignKey('user.userid')),
-                  db.Column('group_name', db.Unicode, db.ForeignKey('group.group_name')))
+                  db.Column('name', db.Unicode, db.ForeignKey('group.name')))
 
 class User(db.Model):
     userid = db.Column(db.Unicode, primary_key=True)
@@ -24,7 +24,7 @@ class User(db.Model):
                              backref=db.backref('users', lazy='dynamic'))
 
 class Group(db.Model):
-    group_name = db.Column(db.Unicode, primary_key=True)
+    name = db.Column(db.Unicode, primary_key=True)
 
 db.create_all()
 
@@ -32,14 +32,14 @@ manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
 def post_get_user(result=None, **kw):
     grouplist = []
-    for group_name in result['groups']:
-        grouplist.append(group_name.values()[0])
+    for name in result['groups']:
+        grouplist.append(name.values()[0])
     result['groups'] = grouplist
 
 def pre_put_user(data=None, **kw):
     grouplist = []
-    for group_name in data['groups']:
-        grouplist.append(dict({'group_name': group_name}))
+    for name in data['groups']:
+        grouplist.append(dict({'name': name}))
     data['groups'] = grouplist
 
 def pre_create_user(data=None, **kw):
@@ -49,8 +49,8 @@ def pre_create_user(data=None, **kw):
     if User.query.filter_by(userid=data['userid']).first():
         raise ProcessingException(description='Duplicate record', code=409)
     grouplist = []
-    for group_name in data['groups']:
-        grouplist.append(dict({'group_name': group_name}))
+    for name in data['groups']:
+        grouplist.append(dict({'name': name}))
     data['groups'] = grouplist
 
 manager.create_api(User, methods=['GET', 'POST', 'PUT', 'DELETE'], collection_name='users',
@@ -78,7 +78,7 @@ def pre_put_group(data=None, **kw):
     data['users'] = userlist
 
 def pre_create_group(data=None, **kw):
-    if Group.query.filter_by(group_name=data['group_name']).first():
+    if Group.query.filter_by(name=data['name']).first():
         raise ProcessingException(description='Duplicate record', code=409)
 
 

@@ -23,17 +23,17 @@ def update_user(first_name='test', last_name='guy', userid='testguy', groups=['t
                         data=json.dumps({'first_name': first_name, 'last_name': last_name, 'userid': userid, 'groups': groups}),
                         headers=headers)
 
-def get_group(group_name='testgroup'):
-    return requests.get(prefix + '/groups/' + group_name, headers=headers)
+def get_group(name='testgroup'):
+    return requests.get(prefix + '/groups/' + name, headers=headers)
 
-def create_group(group_name='testgroup'):
-    return requests.post(prefix + '/groups', data=json.dumps({'group_name': group_name}), headers=headers)
+def create_group(name='testgroup'):
+    return requests.post(prefix + '/groups', data=json.dumps({'name': name}), headers=headers)
 
-def update_group(group_name='testgroup', users=['testuser']):
-    return requests.put(prefix + '/groups/' + group_name, data=json.dumps({'users': users}), headers=headers)
+def update_group(name='testgroup', users=['testuser']):
+    return requests.put(prefix + '/groups/' + name, data=json.dumps({'users': users}), headers=headers)
 
-def delete_group(group_name='testgroup'):
-    return requests.delete(prefix + '/groups/' + group_name, headers=headers)
+def delete_group(name='testgroup'):
+    return requests.delete(prefix + '/groups/' + name, headers=headers)
 
 # Delete testguy and testgroup if they exist
 try:
