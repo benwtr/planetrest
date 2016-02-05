@@ -2,7 +2,7 @@
 set -e
 set -x
 
-python planetrestless.py &
+python 2/planetrestless.py &
 sleep 4
-python planetrestless_tests.py
+python 2/planetrestless_tests.py
 kill %1
