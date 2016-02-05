@@ -3,4 +3,4 @@ python:
   - "2.7"
 install:
   - pip install -r 2/requirements.txt
-script: 2/run_tests.sh
+script: /bin/bash 2/run_tests.sh
